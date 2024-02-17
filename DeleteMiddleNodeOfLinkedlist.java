@@ -14,3 +14,4 @@ public class DeleteMiddleNodeOfLinkedlist {
     return head;
   }
 }
+
