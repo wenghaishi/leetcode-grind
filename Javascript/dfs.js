@@ -28,27 +28,27 @@ function addEdge(origin, destination) {
 airports.forEach((ap) => addNode(ap));
 routes.forEach((r) => addEdge(...r));
 
-function bfs(start) {
-  const queue = [start];
-  const visited = new Set();
+// function bfs(start) {
+//   const queue = [start];
+//   const visited = new Set();
 
-  while (queue.length > 0) {
-    const airport = queue.shift();
-    const edges = myList.get(airport);
-    console.log(airport);
+//   while (queue.length > 0) {
+//     const airport = queue.shift();
+//     const edges = myList.get(airport);
+//     console.log(airport);
 
-    if (edges.includes("BKK")) {
-      console.log("Found bangkok");
-    } else {
-      edges.forEach((edge) => {
-        if (!visited.has(edge)) {
-          queue.push(edge);
-          visited.add(edge);
-        }
-      });
-    }
-  }
-}
+//     if (edges.includes("BKK")) {
+//       console.log("Found bangkok");
+//     } else {
+//       edges.forEach((edge) => {
+//         if (!visited.has(edge)) {
+//           queue.push(edge);
+//           visited.add(edge);
+//         }
+//       });
+//     }
+//   }
+// }
 
 function dfs(start, visited = new Set()) {
   console.log(start);
@@ -65,4 +65,28 @@ function dfs(start, visited = new Set()) {
 }
 
 // bfs("PHX");
-dfs("PHX");
+// dfs("PHX");
+
+function bfs(start) {
+  const myQueue = [start];
+  const visited = new Set();
+
+  while (myQueue.length > 0) {
+    // traverse through the edges
+    const airport = myQueue.shift();
+    if (!visited.has(airport)) {
+      const edges = myList.get(airport);
+
+      edges.forEach((edge) => {
+        myQueue.push(edge);
+      });
+      visited.add(airport);
+
+      if (airport === "BKK") {
+        console.log("Found BKK");
+      } else {
+        console.log("ap: ", airport);
+      }
+    }
+  }
+}
