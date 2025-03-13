@@ -1,13 +1,32 @@
-Promise.all = function promiseAll(values) {
+Promise.resAll = function promiseAll(promises) {
   return new Promise((resolve, reject) => {
-    const promises = Array.from(values);
-    const results = new Array(promises.length);
-    let pending = promises.length;
+    let completed = 0;
+    let results = [];
 
-    promises.forEach((promise) => {
-      Promise.resolve(promise).then((res) => results.push(res));
+    promises.forEach((p) => {
+      Promise.resolve(p)
+        .then((res) => {
+          results.push(res);
+          completed++;
+          if (completed === promises.length) {
+            resolve(results);
+          }
+        })
+        .catch((err) => reject(err));
     });
   });
 };
 
+const apis = [
+  "https://jsonplaceholder.typicode.com/posts/1",
+  "https://jsonplaceholder.typicode.com/posts/2",
+  "https://jsonplaceholder.typicode.com/posts/3",
+];
 
+const promises = apis.map((api) => fetch(api));
+
+const res = await Promise.resAll(promises);
+
+const data = await res.json();
+
+console.log(data);
