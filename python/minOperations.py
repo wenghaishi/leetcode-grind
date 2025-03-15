@@ -25,6 +25,12 @@ def minOperations(boxes):
 
     return result
 
+def optimised(boxes):
+    arr_length = boxes.length
+
+    for i in range(arr_length):
+        
+
 
 
 print(minOperations("101"))
