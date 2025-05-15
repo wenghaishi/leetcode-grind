@@ -3,5 +3,5 @@ public class UmbrellaChallenge {
 
     }
 
-    public static void solution()
+    public static void solution();
 }
