@@ -1,6 +1,3 @@
 # leetcode-grind
-Daily grind for leetcode
 
-...ok maybe not daily...
-
-Python, Java, Javascript and Go
+Interview prep with JS, Java, Python, go and SQL
