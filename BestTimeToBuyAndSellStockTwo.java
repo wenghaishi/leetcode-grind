@@ -20,3 +20,8 @@ public class BestTimeToBuyAndSellStockTwo {
     return profit;
   }
 }
+
+
+public static void goodbye() {
+  systems.out.println()
+}

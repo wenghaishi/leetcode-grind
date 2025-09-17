@@ -28,7 +28,7 @@ func jump(nums []int) int {
     }
 
     return result
-}
+}``
 
 func main() {
     fmt.Println(jump([]int{2, 3, 1, 1, 4}))
