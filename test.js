@@ -1,13 +1,27 @@
+<<<<<<< Updated upstream
 const a =
 <<<<<<< Updated upstream
   "Regular follow up meeting with Amgen to discuss potential MOU support package for Singapore subsidiary Amgen Singapore Manufacturing (“ASM”) and the company’s future business plans in Singapore.";
+=======
+// let bigData = new Array(10000).join('x');
+// function createLeak() {
+//   const largeObject = bigData;
+//   return () => {
+//     // The closure keeps a reference to `largeObject`
+//     console.log(largeObject.length);
+//   };
+// }
+// const leak = createLeak();
+>>>>>>> Stashed changes
 
-const b =
-  'Regular follow up meeting with Amgen to discuss potential MOU support package for Singapore subsidiary Amgen Singapore Manufacturing ("ASM") and the company\'s future business plans in Singapore.';
+function leak() {
+  const element = new Array(1000).fill(1);
 
-const normalize = (str) =>
-  str.replace(/’/g, "'").replace(/“/g, '"').replace(/”/g, '"'); // Convert curly quotes to normal quotes
+  return () => {
+    console.log(element);
+  };
 
+<<<<<<< Updated upstream
 console.log(normalize(a).includes(normalize(b))); // true ✅
 
 const c =
@@ -23,4 +37,8 @@ console.log(d.includes(c));
 const b = a.indexOf(" Himenaeos porta aenean leo ");
 
 console.log(b);
+>>>>>>> Stashed changes
+=======
+}
+leak();
 >>>>>>> Stashed changes
