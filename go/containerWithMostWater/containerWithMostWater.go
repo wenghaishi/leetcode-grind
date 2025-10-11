@@ -1,20 +1,17 @@
+package main
 
-func solution (height []int) int {
-	left := 0
-	right := len(height) - 1
-	currentMax := 0
+import "fmt"
 
-	for {
-		if left = right {
-			break
-		}
+func containerWithMostWater (height []int) int {
+	left, right := 0, len(height) - 1
+	maxVol := 0
 
+	for left < right {
 		width := right - left
-		height := math.min(height[left], height[right])
-		currentVol = width * height
+		vol := min(height[left], height[right]) * width
 
-		if currentVol > currentMax {
-			currentMax = currentVol
+		if vol > maxVol {
+			maxVol = vol
 		}
 
 		if height[left] > height[right] {
@@ -23,5 +20,11 @@ func solution (height []int) int {
 			left++
 		}
 	}
-	return currentMax
+
+	return maxVol
+}
+
+func main() {
+	arr := []int{1,2,3,4}
+	fmt.Println(containerWithMostWater(arr))
 }
