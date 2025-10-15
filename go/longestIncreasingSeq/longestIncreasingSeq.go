@@ -14,19 +14,18 @@ func longestIncreasingSeq(nums []int) []int {
 
 		for j := i; j < len(nums) - 1; j++ {
 			if nums[j+1] == nums[j]+1 {
-				fmt.Println("conseq")
 				right++
-				maxLength++
 			} else {
 				currentLength := right - left + 1
 
-				fmt.Println("current l:", currentLength)
-
 				if currentLength > maxLength {
 					maxSlice = []int{}
+					maxLength = currentLength
 					for k := i; k < right; k++ {
 						maxSlice = append(maxSlice, nums[k])
 					}
+				} else {
+					break
 				}
 			}
 		}
