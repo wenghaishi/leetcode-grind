@@ -31,6 +31,7 @@ func lss(s string) int {
 	return maxLength
 }
 
+
 func main() {
 	test1 := "abcdab"
 
