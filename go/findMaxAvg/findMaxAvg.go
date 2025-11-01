@@ -6,7 +6,7 @@ import (
 )
 
 func findMaxAvg(nums []int, k int) float64 {
-	maxAvg := math.Inf(-1)
+	maxSum := math.MinInt
 
 	left, right := 0, k-1
 
@@ -22,16 +22,16 @@ func findMaxAvg(nums []int, k int) float64 {
             initialSum += nums[right]
         }
 
-		average := float64(initialSum) / float64(k)
 
-		if average > maxAvg {
-			maxAvg = average
+		if initialSum > maxSum {
+			maxSum = initialSum
 		}
 
 		left++
 		right++
 	}
-	return maxAvg
+
+	return float64(maxSum) / float64(k)
 }
 
 
