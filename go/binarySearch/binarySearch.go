@@ -28,9 +28,11 @@ func bSearch(arr []int, target int) int {
 
 
 func main() {
-	test1 := []int{1,2,3,4,5,6,7}
-	fmt.Println(bSearch(test1, 4))
+	// test1 := []int{1,2,3,4,5,6,7}
+	// fmt.Println(bSearch(test1, 4))
 
-	test2 := []int{1}
-	fmt.Println(bSearch(test2, 1))
+	// test2 := []int{1}
+	// fmt.Println(bSearch(test2, 1))
+
+	fmt.Println(3 / 2)
 }
