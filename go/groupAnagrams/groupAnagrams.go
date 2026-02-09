@@ -16,6 +16,7 @@ func groupAnagrams(strs []string) [][]string {
 		strString := string(strRune)
 		strsMap[strString] = append(strsMap[strString], v)
 	}
+	
 
 	var solution [][]string
 
