@@ -1,14 +1,23 @@
 package main
 
 func mergeSort(arr []int) []int {
-
-	inputLength :=len(arr)
-
-	if inputLength < 2 {
+	length := len(arr)
+	if length <= 1 {
 		return
 	}
 
-	mid := inputLength / 2
-	leftHalf := arr[:mid]
-	rightHalf := arr[mid:]
+	middle := length / 2
+
+	leftArr := arr[:middle]
+	rightArr := arr[middle:]
+
+	i,j := 0,0
+
+	for; i < length; i++ {
+
+	}
+}
+
+func merge(leftArr []int, rightArr []int, arr []int) {
+
 }
