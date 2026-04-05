@@ -1,11 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	fmt.Println("Two sum result: ", twoSum([]int{2, 7, 11, 15}, 9))
 	fmt.Println("Best time to buy and sell stock: ", bestTimeToBuyAndSellStock([]int{7, 1, 5, 3, 6, 4}))
 	fmt.Println("Contains duplicate: ", containsDuplicate([]int{1, 2, 3, 1}))
+	fmt.Println("Product except self: ", productExceptSelf([]int{1, 2, 3}))
+	fmt.Println("Max subarray: ", maxSubArray([]int{1, 2, 3}))
+	fmt.Println("Max product: ", maxProduct([]int{1, 2, 3}))
+	fmt.Println("Min rotated sorted arr: ", findMin([]int{1, 2, 3}))
+
 }
 
 func twoSum(nums []int, target int) []int {
@@ -62,38 +70,79 @@ func containsDuplicate(nums []int) bool {
 }
 
 func productExceptSelf(nums []int) []int {
-	if len(nums) == 1 {
-		return nums
-	}
+	solution := make([]int, len(nums))
+	prefix, postfix := 1, 1
 
-	solution := make([]int, 0)
-	totalProduct := nums[0]
-	numOfZeros := 0
-
-	for i := 1; i < len(nums); i++ {
-		if nums[i] == 0 {
-			numOfZeros++
+	for i := 0; i < len(nums); i++ {
+		if i == 0 {
+			solution[i] = prefix
 			continue
 		}
-		totalProduct *= nums[i]
+
+		prefix *= nums[i-1]
+		solution[i] = prefix
 	}
 
-	if numOfZeros > 1 {
-		for j := 0; j < len(nums); j++ {
-			solution = append(solution, 0)
+	for j := len(nums) - 1; j >= 0; j-- {
+		if j == len(nums)-1 {
+			continue
 		}
 
-		return solution
-	}
-
-	for k := 0; k < len(nums); k++ {
-		if numOfZeros == 1 && nums[k] == 0 {
-			solution = append(solution, totalProduct)
-		} else {
-			solution = append(solution, totalProduct/nums[k])
-		}
+		postfix *= nums[j+1]
+		solution[j] *= postfix
 	}
 
 	return solution
+}
 
+func maxSubArray(nums []int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+	maxSum := math.MinInt
+	currentSum := 0
+	for right := 0; right < len(nums); right++ {
+		currentSum += nums[right]
+		if currentSum > maxSum {
+			maxSum = currentSum
+		}
+
+		if currentSum < 0 {
+			currentSum = 0
+		}
+	}
+
+	return maxSum
+}
+
+func maxProduct(nums []int) int {
+	res := math.MinInt
+	currMax, currMin := 1, 1
+
+	for _, v := range nums {
+		tmp := currMax * v
+		currMax = max(v, v*currMax, v*currMin)
+		currMin = min(v, tmp, v*currMin)
+		res = max(res, currMax)
+	}
+
+	return res
+}
+
+func findMin(nums []int) int {
+	left, right := 0, len(nums)-1
+	res := math.MaxInt
+	for left <= right {
+		if nums[left] < res {
+			res = nums[left]
+		}
+
+		if nums[right] < res {
+			res = nums[right]
+		}
+		left++
+		right--
+	}
+
+	return res
 }
